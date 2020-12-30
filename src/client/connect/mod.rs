@@ -83,6 +83,8 @@ use std::fmt;
 
 use ::http::Extensions;
 
+pub use self::sealed::Connect;
+
 cfg_feature! {
     #![feature = "tcp"]
 
@@ -90,12 +92,6 @@ cfg_feature! {
 
     pub mod dns;
     mod http;
-}
-
-cfg_feature! {
-    #![any(feature = "http1", feature = "http2")]
-
-    pub use self::sealed::Connect;
 }
 
 /// Describes a type returned by a connector.
@@ -267,7 +263,6 @@ where
     }
 }
 
-#[cfg(any(feature = "http1", feature = "http2"))]
 pub(super) mod sealed {
     use std::error::Error as StdError;
 

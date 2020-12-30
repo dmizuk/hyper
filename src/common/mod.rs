@@ -33,7 +33,6 @@ pub use self::never::Never;
 pub(crate) use self::task::Poll;
 
 // group up types normally needed for `Future`
-cfg_proto! {
-    pub(crate) use std::marker::Unpin;
-}
+#[cfg(feature = "client")]
+pub(crate) use std::marker::Unpin;
 pub(crate) use std::{future::Future, pin::Pin};
